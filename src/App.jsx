@@ -1,19 +1,17 @@
-import { useState } from 'react';
+import PDFViewer from './PdfViewer';
 
 
-
-function PdfViewer() {
-
-  function onDocumentLoadSuccess({ numPages }) {
-  
-    setNumPages(numPages);
-  
-  }
+function App() {
   
   return (
-    <>
-     </>
-  )  
+    <div className='App'>
+
+      <h1>PDF Viewer</h1>
+      
+      <PDFViewer/>
+    
+    </div>
+    )  
 }
 
-export default PdfViewer;
+export default App;
