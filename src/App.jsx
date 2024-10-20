@@ -1,18 +1,13 @@
 import PDFViewer from './PdfViewer';
-
+import {bebidas} from './bebidas';
 
 function App() {
-  
   return (
-    <div className='App'>
+    <div>
+      <h1>Bebidas</h1>
 
-      <h1>PDF Viewer</h1>
-      
-      <PDFViewer/>
-    
     </div>
-    )  
+  )  
 }
 
 export default App;
-
