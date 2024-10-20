@@ -1,43 +1,22 @@
-import React, { useState } from 'react';
-import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
-import { pdfSections } from './pdfSections';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-
+import React, { useState } from '@react-pdf-viewer/core';
+import { Document, Page } from '@react-pdf-viewer/core';
 
 function PdfViewer() {
-  const [pageNumber, setPageNumber] = useState(1);
-  const [pdfSection, setPdfSection] = useState(null);
   const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
   function onDocumentLoadSuccess({ numPages }) {
+    console.log('Document loaded successfully');
     setNumPages(numPages);
+  }
+
+  function onDocumentLoadError(error) {
+    console.error('Error while loading document! ', error.message);
   }
 
   return (
     <div>
-      {pdfSections.map((section) => (
-        <button 
-          key={section.id}
-          onClick={() => {
-            setPageNumber(section.startPage);
-            setPdfSection(section.id);
-            setNumPages(section.endPage - section.startPage + 1);
-          }}
-        >
-          {section.name}
-        </button>
-      ))}
-      <Document
-        file="./healthy-recipes.pdf"
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page 
-          pageNumber={pageNumber} 
-          renderMode="svg"
-        />
-      </Document>
-      <p>Page {pageNumber} of {numPages}</p>
+      <h1>PDF Viewer</h1>
     </div>
   );
 }
